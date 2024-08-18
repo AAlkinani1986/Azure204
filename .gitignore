@@ -1,0 +1,10 @@
+# Ignore .vscode folder
+.vscode/
+
+# Ignore .appsettings.json file
+appsettings.json
+
+# Ignore any other files that should not be pushed to GitHub
+<file_name_1>
+<file_name_2>
+...
