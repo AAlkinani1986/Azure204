@@ -1,6 +1,8 @@
 
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 Console.WriteLine("Azure Blob Storage - .NET Core Quickstart\n");
 
@@ -11,8 +13,17 @@ Console.WriteLine("Press enter to exit");
 Console.ReadLine();
 
 static async Task ProcessAsync(){
+    // Load the configuration from the appsettings.json file
+ // Load the configuration from the appsettings.json file
+      // Build the configuration
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json")
+            .Build();
 
-    String storageConnectionString = "";
+   
+      
+    string storageConnectionString = configuration.GetSection("AzureStorage:ConnectionString")?.Value ?? string.Empty;
 
     BlobServiceClient blobServiceClient = new BlobServiceClient(storageConnectionString);
 
